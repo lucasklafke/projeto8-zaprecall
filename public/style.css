@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Righteous&display=swap');
+/*font-family: 'Recursive', sans-serif;*/
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #FB6C6B;
+}
+header{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+header div{
+    display: flex;
+    background-color: #FB6C6B;
+}
+h1{
+    color: #fff;
+    font-family: 'Righteous', cursive;
+    width: 100px;
+    display: flex;
+    align-items: center;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+}
+main{
+    margin-top: 85px;
+}
