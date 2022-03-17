@@ -1,17 +1,29 @@
+import react from 'react'
 export default function Content(){
+    //const [state,setState] = react.useState(<Initial/>)
     return (
         <main>
-            <Question/>
-
+            {questionsList.map(element => <Initial Id={element.Id}/>)}
         </main>
     )
 }
 
 function Question(props){
     return (
-        <div>
+        <div className='question-container'>
             <span>{props.question}</span>
-            <img src="setinha.png" alt="" />
+            <button ><img src="assets/setinha.png" alt="" /></button>
+        </div>
+    )
+}
+function Answer(props){
+
+}
+function Initial(props){
+    return (
+        <div className='initial-question-container'>
+            <span>pergunta {props.Id}</span>
+            <img src="assets/Vector.png" alt="" />
         </div>
     )
 }

@@ -6,6 +6,48 @@
 body{
     background-color: #FB6C6B;
 }
+/* initial page*/
+.InitialPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100vh;
+}
+.ZapDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+.ZapDiv h1{
+    width: 152px;
+    height: 35px;
+
+    font-family: 'Righteous', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.012em;
+}
+.InitialPage button{
+    width: 141px;
+    height: 30px;
+    background-color: #fff;
+    color: red;
+    border: 1px solid #D70900;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-family: 'Recursive', sans-serif;;
+}
+/* card page*/
 header{
     display: flex;
     margin-top: 20px;
@@ -28,7 +70,57 @@ h1{
     line-height: 25px;
 }
 main{
-    margin-top: 85px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.initial-question-container{
+    width: 185px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.initial-question-container button{
+    z-index: -5;
+    background-color: #fff;
+    border: none;
+}
+.initial-question-container img{
+    width: 15px;
+    height: 15px;
+    color: black;
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.question-container{
+    width: 185px;
+    height: 80px;
+    background-color: #FFFFD5;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+}
+.question-container span,.initial-question-container span{
+    display: block;
+    padding: 10px 5px;
+    font-family: 'Recursive', sans-serif;
+    color: #333333;
+}
+.question-container button{
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+    border: none;
+    background-color: #FFFFD5;
 }
 footer{
     width: 100%;

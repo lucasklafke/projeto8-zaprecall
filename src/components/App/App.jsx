@@ -1,12 +1,12 @@
-import Header from "../template/Header"
-import Content from "../template/Content"
-import Footer from "../template/Footer"
+import react from 'react'
+import InitialPage from '../template/ScreenComponent/InitialPage'
+import CardPage from '../template/ScreenComponent/CardPage'
 export default function App(){
+    const [screen,setScreen] = react.useState(true)
+
     return (
-        <div>
-            <Header/>
-            <Content/>
-            <Footer/>
-        </div>
+        
+        //screen ? <InitialPage/> : <CardPage/>
+        <CardPage/>
     )
 }
