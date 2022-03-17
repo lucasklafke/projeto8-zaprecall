@@ -1,5 +1,7 @@
 export default function Footer(){
     return (
-        <div>cupinxa</div>
+        <footer>
+            <span>fala galerinha</span>
+        </footer>
     )
 }
