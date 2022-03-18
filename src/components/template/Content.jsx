@@ -42,13 +42,10 @@ const questionsList = [
     }
 ]
 export default function Content(){
-    const [state,setState] = react.useState('initial')
     return (
         <main>
             {questionsList.map((element,index) => <Question 
-            index={index} 
-            screenState={state} 
-            setState={setState} 
+            index={index}  
             question={element.question.question}
             answer={element.answer.answer}
             />)}
@@ -56,21 +53,23 @@ export default function Content(){
     )
 }
 function Question(props){
-    if(props.screenState === 'initial'){
+    const [state,setState] = react.useState('initial')
+
+    if(state === 'initial'){
         return (
             <div className="initial-question-container">
                 <span>pergunta </span>
-                <img onClick={()=> props.setState("question")} src="assets/Vector.png" alt="" />
+                <img onClick={()=> setState("question")} src="assets/Vector.png" alt="" />
             </div>
         )
-    } else if (props.screenState === 'question'){
+    } else if (state === 'question'){
         return (
             <div className="question-container">
                 <span>{props.question} </span>
-                <img onClick={()=> props.setState("answer")} src="assets/Vector.png" alt="" />
+                <img onClick={()=> setState("answer")} src="assets/Vector.png" alt="" />
             </div>
         )
-    } else if (props.screenState === 'answer'){
+    } else if (state === 'answer'){
         return (
             <div className="answer-container">
                 <span>{props.answer} </span>
