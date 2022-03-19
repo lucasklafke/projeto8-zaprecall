@@ -49,13 +49,13 @@ export default function Content(){
             index={index}  
             question={element.question.question}
             answer={element.answer.answer}
-            funcao={setZap}
             />)}
         </main>
     )
 }
 function Question(props){
     const [state,setState] = react.useState('initial')
+    const [zap,setZap] = react.useState('')
     if(state === 'initial'){
         return (
             <div onClick={()=> setState("question")} className="initial-question-container">
@@ -77,19 +77,28 @@ function Question(props){
             <div className="answer-container">
                 <span>{props.answer} </span>
                 <div>
-                    <button onCLick={() => {
-                        props.setZap('forgot')
-                        props.setState('initial')}}
-                        className='bt1'>Não lembrei</button>
-
-                    <button onCLick={() => {
-                        props.setState('initial')
-                        props.setZap('almost')
-                        } } className='bt2'>Quase não lembrei</button>
-                    <button onCLick={() => props.setState("initial")} className='bt3'>Zap!</button>
+                    <button onClick={() => {
+                        setState('finished')
+                        setZap('forgot')
+                    }} className='bt1'>Não lembrei</button>
+                    <button onClick={() => {
+                        setState('finished')
+                        setZap('almost')
+                    }} className='bt2'>Quase não lembrei</button>
+                    <button onClick={() => {
+                        setState('finished')
+                        setZap('zap')
+                    }} className='bt3'>Zap!</button>
                 </div>
             </div>
         )
-    } 
+    } else if (state === 'finished'){
+        return (
+            <div className="initial-question-container">
+                <span className={zap}> pergunta </span>
+                <img src={`assets/${zap}.png`}alt="" />
+            </div>
+        )
+    }
 }
 
