@@ -5,7 +5,7 @@ const questionsList = [
             class: 'question-container'
         },
         answer: {
-            answer: 'divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array',
+            answer: 'divide uma String em uma lista ordenada de substrings, retorna o array',
             class: 'answer-container'
         }
         
@@ -26,7 +26,7 @@ const questionsList = [
             class: ''
         },
         answer: {
-            answer: 'procura um valor ou uma expressão regular em uma string e retorna uma nova string com os valores substituídos. Não altera a string original.',
+            answer: 'procura um valor ou expressão regular, retorna uma nova string com valores substituídos.',
             class: ''
         }
     },
@@ -42,31 +42,34 @@ const questionsList = [
     }
 ]
 export default function Content(){
+    const [zap,setZap] = react.useState(null)
     return (
         <main>
             {questionsList.map((element,index) => <Question 
             index={index}  
             question={element.question.question}
             answer={element.answer.answer}
+            funcao={setZap}
             />)}
         </main>
     )
 }
 function Question(props){
     const [state,setState] = react.useState('initial')
-
     if(state === 'initial'){
         return (
-            <div className="initial-question-container">
+            <div onClick={()=> setState("question")} className="initial-question-container">
                 <span>pergunta </span>
                 <img onClick={()=> setState("question")} src="assets/Vector.png" alt="" />
             </div>
         )
     } else if (state === 'question'){
         return (
-            <div className="question-container">
+            <div onClick={()=> setState("answer")} className="question-container">
                 <span>{props.question} </span>
-                <img onClick={()=> setState("answer")} src="assets/Vector.png" alt="" />
+                <button onClick={()=> setState("answer")}> 
+                    <img  src="assets/setinha.png" alt="" />
+                </button>
             </div>
         )
     } else if (state === 'answer'){
@@ -74,9 +77,16 @@ function Question(props){
             <div className="answer-container">
                 <span>{props.answer} </span>
                 <div>
-                    <button className='bt1'>Não lembrei</button>
-                    <button className='bt2'>Quase não lembrei</button>
-                    <button className='bt3'>Zap!</button>
+                    <button onCLick={() => {
+                        props.setZap('forgot')
+                        props.setState('initial')}}
+                        className='bt1'>Não lembrei</button>
+
+                    <button onCLick={() => {
+                        props.setState('initial')
+                        props.setZap('almost')
+                        } } className='bt2'>Quase não lembrei</button>
+                    <button onCLick={() => props.setState("initial")} className='bt3'>Zap!</button>
                 </div>
             </div>
         )

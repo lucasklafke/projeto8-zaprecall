@@ -1,7 +1,7 @@
-export default function Footer(){
+export default function Footer(props){
     return (
         <footer>
-            <span>fala galerinha</span>
+            <span>0/4 CONCLUÍDOS</span>
         </footer>
     )
 }
