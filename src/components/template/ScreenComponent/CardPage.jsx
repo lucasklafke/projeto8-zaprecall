@@ -1,17 +1,18 @@
-import react from 'react'
+import {useState} from 'react'
 import Header from "../Header"
 import Content from "../Content"
 import Footer from "../Footer"
 
 export default function CardPage(){
-    const [progress,setProgress] = react.useState(0)
-    const [finished,setFinished] = react.useState(false)
-    console.log(progress)
+    //const [progress,setProgress] = react.useState(0)
+    const [list, setList] = useState([]);
+    const [finished,setFinished] = useState(false)
+    console.log(list)
     return (
         <div className='cardPage'>
             <Header/>
-            <Content setProgress={setProgress}/>
-            <Footer finished={finished} progress={progress}/>
+            <Content setList={setList} list={list}/>
+            <Footer finished={finished} list={list}/>
         </div>
     )
 }

@@ -1,4 +1,5 @@
-import react from 'react'
+
+import { useState } from "react";
 const questionsList = [
     {   question:{
             question: 'para que serve a função split?',
@@ -78,26 +79,31 @@ const questionsList = [
     }
 ]
 export default function Content(props){
-    const [list,setList] = react.useState([])
     const shuffledArray = questionsList.sort((a, b) => 0.5 - Math.random());
     return (
         <main>
-            {shuffledArray.map((element,index) => <Question 
-            index={index}  
-            question={element.question.question}
-            answer={element.answer.answer}
-            setProgress={props.setProgress}
-            setList={setList}
-            list={list}
-            />)}
+            {
+                shuffledArray.map((element,index) => 
+                    <Question 
+                        index={index}
+                        question={element.question.question}
+                        answer={element.answer.answer}
+                        //setProgress={props.setProgress}
+                        setList={value => props.setList([...props.list, value])}
+                    />
+                )
+            }
         </main>
     )
 }
 function Question(props){
-    const [state,setState] = react.useState('initial')
-    const [zap,setZap] = react.useState('')
-    function callSetList(element,list){
-        return element(list)
+    const [state, setState] = useState('initial')
+    const [zap, setZap] = useState('')
+
+    function finishQuestion(zap) {
+        setZap(zap);
+        props.setList(zap);
+        setState("finished")
     }
 
     if(state === 'initial'){
@@ -121,26 +127,13 @@ function Question(props){
             <div className="answer-container">
                 <span>{props.answer} </span>
                 <div>
-                    <button onClick={() => {
-                        setState('finished')
-                        setZap('forgot')
-                    }} className='bt1'>Não lembrei</button>
-                    <button onClick={() => {
-                        setState('finished')
-                        setZap('almost')
-                    }} className='bt2'>Quase não lembrei</button>
-                    <button onClick={() => {
-                        setState('finished')
-                        setZap('zap')
-                    }} className='bt3'>Zap!</button>
+                    <button onClick={() => finishQuestion("forgot")} className='bt1'>Não lembrei</button>
+                    <button onClick={() => finishQuestion("almost")} className='bt2'>Quase não lembrei</button>
+                    <button onClick={() => finishQuestion("zap")} className='bt3'>Zap!</button>
                 </div>
             </div>
         )
     } else if (state === 'finished'){
-        const list = [...props.list]
-        list.push(zap)
-        callSetList(props.setList,list)
-        console.log(list)
         return (
             <div className="initial-question-container">
                 <span className={zap}> pergunta </span>
@@ -149,5 +142,3 @@ function Question(props){
         )
     }
 }
-
-
