@@ -11,8 +11,8 @@ function Progress(props){
     )
 }
 function Finished(props){
-    let result = false
-    props.list.map(element => element !== 'forgot' ? true : null)
+    let result = true
+    props.list.map(element => element == 'forgot' ? result =  false : null)
     
     return (
         <footer className="footer2">
