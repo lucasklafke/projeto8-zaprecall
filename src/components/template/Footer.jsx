@@ -1,6 +1,7 @@
 export default function Footer(props)   {
+    let counter = props.list.length
     return(
-        !props.finished  ? <InGame list={props.list}/> : <Finished/>
+        counter < 8  ? <InGame counter={counter} list={props.list}/> : <Finished counter={counter} list={props.list}/>
     )
 }
 
@@ -10,30 +11,30 @@ function Progress(props){
     )
 }
 function Finished(props){
-    const result = props.progress.map(element => element !== 'forgot' ? true : false)
+    let result = false
+    props.list.map(element => element !== 'forgot' ? true : null)
     
     return (
-        <footer>
+        <footer className="footer2">
             <div>
                 <img src={result? `assets/party.png` : `assets/sad.png`} alt="" />
                 <span>
-                    {result? `Você não esqueceu de nenhum flashcard!` : `Ainda faltam alguns...Mas não desanime!`}
+                    {result? `Parabéns!` : `Putz...`}
                 </span>
             </div>
-            <span></span>
-            <span></span>
-            <div>
-                {/* {props.progress.map(element => <Progress zap={element}/>)} */}
+            <span className="progress-message">{result? `Você não esqueceu de nenhum flashcard!` : `Ainda faltam alguns...Mas não desanime!`}</span>
+            <span>{`${props.counter}/8 Concluídos`}</span>
+            <div className="progress">
+                {props.list.map(element => <Progress zap={element}/>)} 
             </div>
         </footer>
     )
 }
 function InGame(props){
-    // let counter = props.progress.length
     return (
         <footer>
-            <span>0/8 CONCLUÍDOS</span>
-            <div>
+            <span>{`${props.counter}/8 Concluídos`}</span>
+            <div className="progress">
                 {props.list.map(element => <Progress zap={element}/>)}
             </div>
         </footer>
