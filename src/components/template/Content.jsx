@@ -85,6 +85,7 @@ export default function Content(props){
             {
                 shuffledArray.map((element,index) => 
                     <Question 
+                        key={index}
                         index={index}
                         question={element.question.question}
                         answer={element.answer.answer}
@@ -109,7 +110,7 @@ function Question(props){
     if(state === 'initial'){
         return (
             <div onClick={()=> setState("question")} className="initial-question-container">
-                <span>pergunta </span>
+                <span>{`Pergunta ${props.index + 1}`} </span>
                 <img onClick={()=> setState("question")} src="assets/Vector.png" alt="" />
             </div>
         )
