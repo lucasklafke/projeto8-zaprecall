@@ -78,7 +78,7 @@ const questionsList = [
     }
 ]
 export default function Content(props){
-    const [list,setList] = react.useState(null)
+    const [list,setList] = react.useState([])
     const shuffledArray = questionsList.sort((a, b) => 0.5 - Math.random());
     return (
         <main>
@@ -96,8 +96,8 @@ export default function Content(props){
 function Question(props){
     const [state,setState] = react.useState('initial')
     const [zap,setZap] = react.useState('')
-    function callSetList(element,list,zap){
-        return element([...list,zap])
+    function callSetList(element,list){
+        return element(list)
     }
 
     if(state === 'initial'){
@@ -137,10 +137,10 @@ function Question(props){
             </div>
         )
     } else if (state === 'finished'){
-        const list = [props.list]
-
-        callSetList(props.setList,list,zap)
-        
+        const list = [...props.list]
+        list.push(zap)
+        callSetList(props.setList,list)
+        console.log(list)
         return (
             <div className="initial-question-container">
                 <span className={zap}> pergunta </span>

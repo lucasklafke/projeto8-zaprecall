@@ -1,6 +1,6 @@
 export default function Footer(props){
     return(
-        !props.finished  ? <InGame/> : <Finished/>
+        !props.finished  ? <InGame progress={props.progress}/> : <Finished/>
     )
 }
 
@@ -24,10 +24,11 @@ function Finished(){
         </footer>
     )
 }
-function InGame(){
+function InGame(props){
+    //let counter = props.progress.length
     return (
         <footer>
-            <span>0/4 CONCLUÍDOS</span>
+            <span>0/8 CONCLUÍDOS</span>
             <div>
                 {/* {props.progress.map(element => <Progress zap={element}/>)} */}
             </div>
