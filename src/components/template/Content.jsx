@@ -39,16 +39,56 @@ const questionsList = [
             answer: 'determina se um array contém um determinado elemento, retornando true ou false apropriadamente.',
             class:'answer-container'
         }
+    },{
+        question: {
+            question: 'como se monta um state?',
+            class: 'question-container'
+        },
+        answer:{
+            answer: 'const [state,setState] = react.useState(initialState)',
+            class:'answer-container'
+        }
+    },{
+        question: {
+            question: 'O que são as props?',
+            class: 'question-container'
+        },
+        answer:{
+            answer: 'Propriedades passadas em react para componentes',
+            class:'answer-container'
+        }
+    },{
+        question: {
+            question: 'Qual o primeiro código escrito em qualquer linguagem?',
+            class: 'question-container'
+        },
+        answer:{
+            answer: 'Hello world!',
+            class:'answer-container'
+        }
+    },{
+        question: {
+            question: 'como determinar que uma função pode ser exportada?',
+            class: 'question-container'
+        },
+        answer:{
+            answer: 'export default function(){ alert("Hello world") }',
+            class:'answer-container'
+        }
     }
 ]
-export default function Content(){
-    const [zap,setZap] = react.useState(null)
+export default function Content(props){
+    const [list,setList] = react.useState(null)
+    const shuffledArray = questionsList.sort((a, b) => 0.5 - Math.random());
     return (
         <main>
-            {questionsList.map((element,index) => <Question 
+            {shuffledArray.map((element,index) => <Question 
             index={index}  
             question={element.question.question}
             answer={element.answer.answer}
+            setProgress={props.setProgress}
+            setList={setList}
+            list={list}
             />)}
         </main>
     )
@@ -56,6 +96,10 @@ export default function Content(){
 function Question(props){
     const [state,setState] = react.useState('initial')
     const [zap,setZap] = react.useState('')
+    function callSetList(element,list,zap){
+        return element([...list,zap])
+    }
+
     if(state === 'initial'){
         return (
             <div onClick={()=> setState("question")} className="initial-question-container">
@@ -93,6 +137,10 @@ function Question(props){
             </div>
         )
     } else if (state === 'finished'){
+        const list = [props.list]
+
+        callSetList(props.setList,list,zap)
+        
         return (
             <div className="initial-question-container">
                 <span className={zap}> pergunta </span>
@@ -101,4 +149,5 @@ function Question(props){
         )
     }
 }
+
 
